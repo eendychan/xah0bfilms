@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рецензии xah0b</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #222222;
+            --text-primary: #f0f0f0;
+            --text-secondary: #aaaaaa;
+            --border: #333333;
+            --accent: #6c5ce7;
+            --accent-hover: #5b4fcf;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .light-theme {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-card: #fafafa;
+            --text-primary: #222222;
+            --text-secondary: #666666;
+            --border: #e0e0e0;
+            --accent: #6c5ce7;
+            --accent-hover: #5b4fcf;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .social-btn.twitch {
+            background: #9146ff;
+        }
+
+        .social-btn.telegram {
+            background: #0088cc;
+        }
+
+        .social-btn.youtube {
+            background: #ff0000;
+        }
+
+        .controls {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-title i {
+            color: var(--accent);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .content-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: visible;
+            cursor: pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 320px;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            z-index: 50;
+        }
+
+        .content-banner {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px 10px 0 0;
+            background: linear-gradient(45deg, #222, #333);
+        }
+
+        .banner-error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #333, #444);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .banner-error i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .content-title {
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            color: var(--text-primary);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 0 10px 10px;
+            background: var(--bg-card);
+        }
+
+        .info-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 376px;
+            min-height: 320px;
+            max-height: 320px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 100;
+            display: none;
+            box-shadow: var(--shadow);
+            pointer-events: auto;
+            box-sizing: border-box;
+        }
+
+        .info-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .info-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .info-panel::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .info-content {
+            width: 100%;
+            max-width: 336px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.3;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+        .info-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            width: 100%;
+        }
+
+        .info-item i {
+            color: var(--accent);
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-text {
+            flex: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        .status-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+            margin-left: 4px;
+        }
+
+        .status-watched { background: rgba(76, 175, 80, 0.15); color: #4caf50; }
+        .status-watching { background: rgba(33, 150, 243, 0.15); color: #2196f3; }
+        .status-dropped { background: rgba(244, 67, 54, 0.15); color: #f44336; }
+        .status-onhold { background: rgba(255, 152, 0, 0.15); color: #ff9800; }
+
+        .content-card:hover .info-panel.right {
+            display: flex;
+            flex-direction: column;
+            left: calc(100% + 10px);
+        }
+
+        .content-card:hover .info-panel.left {
+            display: flex;
+            flex-direction: column;
+            left: auto;
+            right: calc(100% + 10px);
+        }
+
+        .content-card:hover .info-panel.right.edge-adjust {
+            left: auto;
+            right: calc(100% + 10px);
+        }
+
+        .content-card:hover .info-panel.left.edge-adjust {
+            left: calc(100% + 10px);
+            right: auto;
+        }
+
+        .watch-buttons {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .watch-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            gap: 8px;
+            color: white;
+            text-align: center;
+        }
+
+        .watch-link.size-large {
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .watch-link.size-small {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            font-size: 0;
+            position: relative;
+        }
+
+        .watch-link.size-small i {
+            font-size: 18px;
+            margin: 0;
+            color: white;
+        }
+
+        .watch-link.size-small:hover::after {
+            content: attr(data-title);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            border: 1px solid var(--border);
+            z-index: 101;
+            pointer-events: none;
+            box-shadow: var(--shadow);
+        }
+
+        .watch-link:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle i {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .info-panel {
+                width: 340px;
+            }
+            .info-content {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .info-panel {
+                width: 320px;
+            }
+            .info-content {
+                max-width: 280px;
+            }
+            .content-card:hover .info-panel.right,
+            .content-card:hover .info-panel.left {
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%);
+                top: calc(100% + 10px);
+                width: 90vw;
+                max-width: 320px;
+            }
+            .watch-link.size-small {
+                width: 100%;
+                height: 40px;
+                font-size: 13px;
+                gap: 8px;
+            }
+            .watch-link.size-small i {
+                font-size: 16px;
+            }
+            .watch-link.size-small:hover::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .content-card {
+                height: 280px;
+            }
+            .content-banner {
+                height: 200px;
+            }
+            .content-title {
+                height: 60px;
+                font-size: 13px;
+            }
+            .info-panel {
+                display: none !important;
+            }
+            .mobile-info {
+                display: block !important;
+                padding: 10px;
+                font-size: 12px;
+                color: var(--text-secondary);
+                border-top: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="logo">
+                <span style="font-weight: 600; color: var(--accent);">xah0b</span>
+                <span style="color: var(--text-secondary); font-size: 13px; margin-left: 8px;">archive</span>
+            </div>
+            <div class="social-buttons">
+                <a href="https://twitch.tv/xah0b" class="social-btn twitch" title="Twitch" target="_blank">
+                    <i class="fab fa-twitch"></i>
+                </a>
+                <a href="https://t.me/xah0b" class="social-btn telegram" title="Telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://youtube.com/hape3hoecamapa" class="social-btn youtube" title="YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Поиск..." id="searchInput">
+        </div>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="films">Фильмы</button>
+            <button class="filter-btn" data-filter="anime">Аниме</button>
+            <button class="filter-btn" data-filter="films-anime">Фильмо-аниме</button>
+            <button class="filter-btn" data-filter="series">Многосерийное</button>
+            <button class="filter-btn" data-filter="other">Прочее</button>
+        </div>
+    </div>
+
+    <main class="main-content" id="contentContainer">
+        <!-- Контент загружается через JavaScript -->
+    </main>
+
+    <footer class="footer">
+        <div>© 2024 xah0b • Просмотрено <span id="totalCount">0</span> тайтлов</div>
+        <div style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Данные обновляются автоматически</div>
+    </footer>
+
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        const CONFIG = {
+            dataFile: 'data.json',
+            fallbackImages: {
+                films: 'https://images.unsplash.com/photo-1489599809516-9827b6d1cf13?w=600&h=900&fit=crop',
+                anime: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=900&fit=crop',
+                series: 'https://images.unsplash.com/photo-1595769812725-4c6564ca7568?w=600&h=900&fit=crop',
+                'films-anime': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=900&fit=crop',
+                other: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=600&h=900&fit=crop'
+            }
+        };
+
+        let allContent = [];
+        let filteredContent = [];
+
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            themeToggle.innerHTML = document.body.classList.contains('light-theme') 
+                ? '<i class="fas fa-moon"></i>' 
+                : '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        });
+
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        function checkImage(url, fallback) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(url);
+                img.onerror = () => resolve(fallback);
+                img.src = url;
+            });
+        }
+
+        function getIconForButton(text, url) {
+            const lowerText = text.toLowerCase();
+            const lowerUrl = url.toLowerCase();
+            
+            if (lowerText.includes('twitch') || lowerUrl.includes('twitch')) {
+                return 'fab fa-twitch';
+            }
+            if (lowerText.includes('youtube') || lowerUrl.includes('youtube') || lowerUrl.includes('youtu.be')) {
+                return 'fab fa-youtube';
+            }
+            if (lowerText.includes('vk') || lowerUrl.includes('vk.com')) {
+                return 'fab fa-vk';
+            }
+            if (lowerText.includes('telegram') || lowerUrl.includes('t.me')) {
+                return 'fab fa-telegram';
+            }
+            return 'fas fa-external-link-alt';
+        }
+
+        async function loadData() {
+            try {
+                const response = await fetch(CONFIG.dataFile + '?v=' + Date.now());
+                allContent = await response.json();
+                
+                await Promise.all(allContent.map(async (item) => {
+                    const fallback = CONFIG.fallbackImages[item.category] || CONFIG.fallbackImages.other;
+                    item.originalBanner = item.banner;
+                    item.banner = await checkImage(item.banner, fallback);
+                    return item;
+                }));
+                
+                filteredContent = [...allContent];
+                renderContent();
+                updateStats();
+                setupEventListeners();
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                document.getElementById('contentContainer').innerHTML = 
+                    '<div style="text-align: center; padding: 40px; color: var(--text-secondary)">Ошибка загрузки данных</div>';
+            }
+        }
+
+        function renderContent() {
+            const container = document.getElementById('contentContainer');
+            const categories = {};
+            
+            filteredContent.forEach(item => {
+                if (!categories[item.category]) {
+                    categories[item.category] = [];
+                }
+                categories[item.category].push(item);
+            });
+
+            let html = '';
+            const categoryOrder = ['films', 'anime', 'films-anime', 'series', 'other'];
+            
+            categoryOrder.forEach(categoryKey => {
+                const items = categories[categoryKey];
+                if (!items || items.length === 0) return;
+                
+                const categoryNames = {
+                    'films': 'Фильмы',
+                    'anime': 'Аниме',
+                    'films-anime': 'Фильмо-аниме',
+                    'series': 'Многосерийное',
+                    'other': 'Прочее'
+                };
+                
+                html += `
+                    <section class="category-section" id="${categoryKey}-section">
+                        <h2 class="category-title">
+                            <i class="${getCategoryIcon(categoryKey)}"></i>
+                            ${categoryNames[categoryKey]} (${items.length})
+                        </h2>
+                        <div class="content-grid">
+                            ${items.map((item, index) => renderItem(item, index)).join('')}
+                        </div>
+                    </section>
+                `;
+            });
+            
+            container.innerHTML = html || '<div style="text-align: center; padding: 40px; color: var(--text-secondary)">Ничего не найдено</div>';
+            
+            setTimeout(() => {
+                setupCardEvents();
+                setupImageErrorHandling();
+            }, 100);
+        }
+
+        function renderItem(item, index) {
+            const statusClass = `status-${item.status || 'watched'}`;
+            const statusText = getStatusText(item.status || 'watched');
+            const isLeft = index % 2 === 0;
+            
+            let buttonsHTML = '';
+            if (item.buttons && Array.isArray(item.buttons)) {
+                buttonsHTML = item.buttons.map(button => {
+                    const iconClass = button.icon || getIconForButton(button.text, button.url);
+                    const sizeClass = button.size === 'small' ? 'size-small' : 'size-large';
+                    const buttonStyle = button.color ? `style="background: ${button.color};"` : '';
+                    const titleAttr = button.size === 'small' ? `data-title="${button.text}"` : '';
+                    
+                    const buttonContent = button.size === 'small' 
+                        ? `<i class="${iconClass}"></i>`
+                        : `<i class="${iconClass}"></i> ${button.text}`;
+                    
+                    return `
+                        <a href="${button.url}" class="watch-link ${sizeClass}" target="_blank" ${buttonStyle} ${titleAttr}>
+                            ${buttonContent}
+                        </a>
+                    `;
+                }).join('');
+            } else if (item.streamLink) {
+                const iconClass = getIconForButton('Смотреть запись', item.streamLink);
+                buttonsHTML = `
+                    <a href="${item.streamLink}" class="watch-link size-large" target="_blank" style="background: var(--accent);">
+                        <i class="${iconClass}"></i> Смотреть запись
+                    </a>
+                `;
+            }
+            
+            return `
+                <div class="content-card" data-category="${item.category}" data-title="${item.title.toLowerCase()}" data-index="${index}">
+                    ${item.banner.includes('unsplash') ? 
+                        `<div class="content-banner banner-error">
+                            <div style="text-align: center; padding: 20px;">
+                                <i class="fas fa-image"></i><br>
+                                <small>${item.title}</small>
+                            </div>
+                        </div>` : 
+                        `<img src="${item.banner}" alt="${item.title}" class="content-banner" loading="lazy" onerror="this.onerror=null; this.src='${CONFIG.fallbackImages[item.category] || CONFIG.fallbackImages.other}'; this.classList.add('banner-error')">`
+                    }
+                    <div class="content-title">${item.title}</div>
+                    
+                    <div class="info-panel ${isLeft ? 'left' : 'right'}">
+                        <div class="info-content">
+                            <h3 class="info-title">${item.title}</h3>
+                            
+                            <div class="info-items">
+                                ${item.episodesWatched ? `
+                                    <div class="info-item">
+                                        <i class="fas fa-play-circle"></i>
+                                        <div class="info-text">Просмотрено серий: <strong>${item.episodesWatched}</strong></div>
+                                    </div>
+                                ` : ''}
+                                
+                                <div class="info-item">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <div class="info-text">Дата просмотра: <strong>${item.watchDate || 'Не указано'}</strong></div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <i class="fas fa-flag"></i>
+                                    <div class="info-text">
+                                        <div class="status-container">
+                                            <span>Статус:</span>
+                                            <span class="status-badge ${statusClass}">${statusText}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                ${item.description ? `
+                                    <div class="info-item">
+                                        <i class="fas fa-comment"></i>
+                                        <div class="info-text">${item.description}</div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            
+                            ${buttonsHTML ? `
+                                <div class="watch-buttons">
+                                    ${buttonsHTML}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-info" style="display: none;">
+                        <div>${statusText} • ${item.episodesWatched || 1} серия</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getCategoryIcon(category) {
+            const icons = {
+                'films': 'fas fa-film',
+                'anime': 'fas fa-dragon',
+                'films-anime': 'fas fa-theater-masks',
+                'series': 'fas fa-tv',
+                'other': 'fas fa-ellipsis-h'
+            };
+            return icons[category] || 'fas fa-film';
+        }
+
+        function getStatusText(status) {
+            const statuses = {
+                'watched': 'Посмотрел',
+                'watching': 'В процессе',
+                'dropped': 'Дропнул',
+                'onhold': 'Долг'
+            };
+            return statuses[status] || 'Посмотрел';
+        }
+
+        function setupCardEvents() {
+            document.querySelectorAll('.content-card').forEach(card => {
+                card.addEventListener('mouseenter', function(e) {
+                    const panel = this.querySelector('.info-panel');
+                    const rect = this.getBoundingClientRect();
+                    const panelWidth = 376;
+                    
+                    if (panel.classList.contains('right')) {
+                        if (rect.right + panelWidth + 20 > window.innerWidth) {
+                            panel.classList.add('edge-adjust');
+                        } else {
+                            panel.classList.remove('edge-adjust');
+                        }
+                    } else {
+                        if (rect.left - panelWidth - 20 < 0) {
+                            panel.classList.add('edge-adjust');
+                        } else {
+                            panel.classList.remove('edge-adjust');
+                        }
+                    }
+                });
+            });
+        }
+
+        function setupImageErrorHandling() {
+            document.querySelectorAll('.content-banner').forEach(img => {
+                img.addEventListener('error', function() {
+                    const card = this.closest('.content-card');
+                    const category = card.dataset.category;
+                    this.src = CONFIG.fallbackImages[category] || CONFIG.fallbackImages.other;
+                    this.classList.add('banner-error');
+                });
+            });
+        }
+
+        function filterContent(category) {
+            if (category === 'all') {
+                filteredContent = [...allContent];
+            } else {
+                filteredContent = allContent.filter(item => item.category === category);
+            }
+            renderContent();
+            
+            const firstSection = document.querySelector('.category-section');
+            if (firstSection) {
+                setTimeout(() => {
+                    firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+
+        function searchContent(query) {
+            const searchTerm = query.toLowerCase().trim();
+            if (!searchTerm) {
+                filteredContent = [...allContent];
+            } else {
+                filteredContent = allContent.filter(item => 
+                    item.title.toLowerCase().includes(searchTerm) ||
+                    (item.description && item.description.toLowerCase().includes(searchTerm))
+                );
+            }
+            renderContent();
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    filterContent(e.target.dataset.filter);
+                });
+            });
+
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    searchContent(e.target.value);
+                }, 300);
+            });
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    searchInput.value = '';
+                });
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('totalCount').textContent = allContent.length;
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
