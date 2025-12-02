@@ -209,11 +209,13 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             transition: transform 0.2s, box-shadow 0.2s;
+            height: 320px; /* Фиксированная высота */
         }
 
         .content-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow);
+            z-index: 50; /* Повышаем z-index при наведении */
         }
 
         .content-banner {
@@ -221,6 +223,21 @@
             height: 250px;
             object-fit: cover;
             display: block;
+            background: linear-gradient(45deg, #222, #333); /* Фон на случай ошибки */
+        }
+
+        .banner-error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #333, #444);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .banner-error i {
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
         .content-title {
@@ -229,13 +246,18 @@
             font-weight: 500;
             text-align: center;
             color: var(--text-primary);
+            height: 70px; /* Фиксированная высота для названия */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Информационная панель при наведении */
+        /* Информационная панель при наведении - ФИКСИРОВАННАЯ */
         .info-panel {
             position: absolute;
             top: 0;
-            width: 280px;
+            left: 0;
+            width: 300px; /* Ширина больше, чем у карточки */
             height: 100%;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -245,6 +267,7 @@
             z-index: 100;
             display: none;
             box-shadow: var(--shadow);
+            pointer-events: auto; /* Разрешаем взаимодействие */
         }
 
         .info-panel::-webkit-scrollbar {
@@ -260,16 +283,27 @@
             border-radius: 2px;
         }
 
-        .content-card:hover .info-panel {
+        /* Позиционирование панелей */
+        .content-card:hover .info-panel.right {
             display: block;
+            left: calc(100% + 10px); /* Справа от карточки */
         }
 
-        .info-panel.right {
-            left: 0;
+        .content-card:hover .info-panel.left {
+            display: block;
+            left: auto;
+            right: calc(100% + 10px); /* Слева от карточки */
         }
 
-        .info-panel.left {
-            right: 0;
+        /* Адаптация для краев экрана */
+        .content-card:hover .info-panel.right.edge-adjust {
+            left: auto;
+            right: calc(100% + 10px);
+        }
+
+        .content-card:hover .info-panel.left.edge-adjust {
+            left: calc(100% + 10px);
+            right: auto;
         }
 
         /* Минималистичное содержимое панели */
@@ -278,6 +312,7 @@
             font-weight: 600;
             margin-bottom: 16px;
             color: var(--text-primary);
+            padding-right: 10px;
         }
 
         .info-item {
@@ -287,12 +322,14 @@
             gap: 8px;
             font-size: 13px;
             color: var(--text-secondary);
+            padding-right: 10px;
         }
 
         .info-item i {
             color: var(--accent);
             width: 16px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .status-badge {
@@ -302,6 +339,7 @@
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .status-watched { background: rgba(76, 175, 80, 0.15); color: #4caf50; }
@@ -321,6 +359,7 @@
             font-size: 13px;
             font-weight: 500;
             transition: background 0.2s;
+            white-space: nowrap;
         }
 
         .watch-link:hover {
@@ -377,7 +416,17 @@
             }
             
             .info-panel {
-                width: 240px;
+                width: 280px;
+            }
+            
+            .content-card:hover .info-panel.right,
+            .content-card:hover .info-panel.left {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                top: calc(100% + 10px);
+                width: 90vw;
+                max-width: 300px;
             }
         }
 
@@ -390,14 +439,21 @@
                 justify-content: center;
             }
             
-            .info-panel {
-                display: none !important;
+            .content-card {
+                height: 280px;
             }
             
-            .mobile-info {
-                display: block !important;
-                padding: 12px;
-                font-size: 12px;
+            .content-banner {
+                height: 200px;
+            }
+            
+            .content-title {
+                height: 60px;
+                font-size: 13px;
+            }
+            
+            .info-panel {
+                display: none !important;
             }
         }
     </style>
@@ -461,7 +517,13 @@
         // Конфигурация
         const CONFIG = {
             dataFile: 'data.json',
-            itemsPerPage: 50
+            fallbackImages: {
+                films: 'https://images.unsplash.com/photo-1489599809516-9827b6d1cf13?w=600&h=900&fit=crop',
+                anime: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=900&fit=crop',
+                series: 'https://images.unsplash.com/photo-1595769812725-4c6564ca7568?w=600&h=900&fit=crop',
+                'films-anime': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=900&fit=crop',
+                other: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=600&h=900&fit=crop'
+            }
         };
 
         // Глобальные переменные
@@ -484,11 +546,30 @@
             themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         }
 
+        // Функция для проверки изображений
+        function checkImage(url, fallback) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(url);
+                img.onerror = () => resolve(fallback);
+                img.src = url;
+            });
+        }
+
         // Загрузка данных
         async function loadData() {
             try {
                 const response = await fetch(CONFIG.dataFile + '?v=' + Date.now());
                 allContent = await response.json();
+                
+                // Проверяем и исправляем изображения
+                await Promise.all(allContent.map(async (item) => {
+                    const fallback = CONFIG.fallbackImages[item.category] || CONFIG.fallbackImages.other;
+                    item.originalBanner = item.banner;
+                    item.banner = await checkImage(item.banner, fallback);
+                    return item;
+                }));
+                
                 filteredContent = [...allContent];
                 renderContent();
                 updateStats();
@@ -536,7 +617,7 @@
                             ${categoryNames[categoryKey]} (${items.length})
                         </h2>
                         <div class="content-grid">
-                            ${items.map(item => renderItem(item)).join('')}
+                            ${items.map((item, index) => renderItem(item, index)).join('')}
                         </div>
                     </section>
                 `;
@@ -545,30 +626,44 @@
             container.innerHTML = html || '<div style="text-align: center; padding: 40px; color: var(--text-secondary)">Ничего не найдено</div>';
             
             // Переинициализация событий для новых элементов
-            setTimeout(setupCardEvents, 100);
+            setTimeout(() => {
+                setupCardEvents();
+                setupImageErrorHandling();
+            }, 100);
         }
 
         // Рендер одной карточки
-        function renderItem(item) {
+        function renderItem(item, index) {
             const statusClass = `status-${item.status || 'watched'}`;
             const statusText = getStatusText(item.status || 'watched');
+            const isLeft = index % 2 === 0; // Четные карточки показывают панель слева
             
             return `
-                <div class="content-card" data-category="${item.category}" data-title="${item.title.toLowerCase()}">
-                    <img src="${item.banner}" alt="${item.title}" class="content-banner" loading="lazy">
+                <div class="content-card" data-category="${item.category}" data-title="${item.title.toLowerCase()}" data-index="${index}">
+                    ${item.banner.includes('unsplash') ? 
+                        `<div class="content-banner banner-error">
+                            <div style="text-align: center; padding: 20px;">
+                                <i class="fas fa-image"></i><br>
+                                <small>${item.title}</small>
+                            </div>
+                        </div>` : 
+                        `<img src="${item.banner}" alt="${item.title}" class="content-banner" loading="lazy" onerror="this.onerror=null; this.src='${CONFIG.fallbackImages[item.category] || CONFIG.fallbackImages.other}'; this.classList.add('banner-error')">`
+                    }
                     <div class="content-title">${item.title}</div>
                     
-                    <div class="info-panel right">
+                    <div class="info-panel ${isLeft ? 'left' : 'right'}">
                         <h3 class="info-title">${item.title}</h3>
                         
-                        <div class="info-item">
-                            <i class="fas fa-play-circle"></i>
-                            <span>${item.episodesWatched || 1} серия</span>
-                        </div>
+                        ${item.episodesWatched ? `
+                            <div class="info-item">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Просмотрено серий: ${item.episodesWatched}</span>
+                            </div>
+                        ` : ''}
                         
                         <div class="info-item">
                             <i class="fas fa-calendar-check"></i>
-                            <span>Просмотрено: ${item.watchDate || 'Не указано'}</span>
+                            <span>Дата просмотра: ${item.watchDate || 'Не указано'}</span>
                         </div>
                         
                         <div class="info-item">
@@ -576,15 +671,18 @@
                             <span>Статус: <span class="status-badge ${statusClass}">${statusText}</span></span>
                         </div>
                         
+                        ${item.description ? `
+                            <div class="info-item">
+                                <i class="fas fa-comment"></i>
+                                <span>${item.description}</span>
+                            </div>
+                        ` : ''}
+                        
                         ${item.streamLink ? `
                             <a href="${item.streamLink}" class="watch-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Смотреть запись
+                                <i class="fas fa-external-link-alt"></i> Смотреть запись на Twitch
                             </a>
                         ` : ''}
-                    </div>
-                    
-                    <div class="mobile-info" style="display: none; font-size: 12px; color: var(--text-secondary);">
-                        <div>${statusText} • ${item.episodesWatched || 1} серия</div>
                     </div>
                 </div>
             `;
@@ -611,6 +709,46 @@
                 'onhold': 'Долг'
             };
             return statuses[status] || 'Посмотрел';
+        }
+
+        // Настройка событий для карточек
+        function setupCardEvents() {
+            document.querySelectorAll('.content-card').forEach(card => {
+                card.addEventListener('mouseenter', function(e) {
+                    const panel = this.querySelector('.info-panel');
+                    const rect = this.getBoundingClientRect();
+                    const panelWidth = 300;
+                    
+                    // Проверяем, помещается ли панель
+                    if (panel.classList.contains('right')) {
+                        // Проверяем, помещается ли справа
+                        if (rect.right + panelWidth + 20 > window.innerWidth) {
+                            panel.classList.add('edge-adjust');
+                        } else {
+                            panel.classList.remove('edge-adjust');
+                        }
+                    } else {
+                        // Проверяем, помещается ли слева
+                        if (rect.left - panelWidth - 20 < 0) {
+                            panel.classList.add('edge-adjust');
+                        } else {
+                            panel.classList.remove('edge-adjust');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Обработка ошибок изображений
+        function setupImageErrorHandling() {
+            document.querySelectorAll('.content-banner').forEach(img => {
+                img.addEventListener('error', function() {
+                    const card = this.closest('.content-card');
+                    const category = card.dataset.category;
+                    this.src = CONFIG.fallbackImages[category] || CONFIG.fallbackImages.other;
+                    this.classList.add('banner-error');
+                });
+            });
         }
 
         // Фильтрация
@@ -670,24 +808,6 @@
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     searchInput.value = '';
-                });
-            });
-        }
-
-        // Настройка событий для карточек
-        function setupCardEvents() {
-            document.querySelectorAll('.content-card').forEach(card => {
-                card.addEventListener('mouseenter', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const panel = this.querySelector('.info-panel');
-                    
-                    if (rect.left < window.innerWidth / 2) {
-                        panel.classList.remove('right');
-                        panel.classList.add('left');
-                    } else {
-                        panel.classList.remove('left');
-                        panel.classList.add('right');
-                    }
                 });
             });
         }
