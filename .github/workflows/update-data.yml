@@ -5,24 +5,27 @@ on:
     - cron: '0 3 * * *'
   workflow_dispatch:
   push:
+    branches: [ main ]
     paths:
       - 'scripts/update_data.py'
-      - 'data.json'
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write  # Добавляем права на запись
+    
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.9'
+        python-version: '3.10'
         
     - name: Install dependencies
       run: |
@@ -32,10 +35,16 @@ jobs:
       run: |
         python scripts/update_data.py
         
-    - name: Commit and push changes
+    - name: Commit and push if changes
       run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git add data.json
-        git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update content data"
-        git push
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Проверяем, есть ли изменения
+        if git diff --quiet data.json; then
+          echo "No changes to commit"
+        else
+          git add data.json
+          git commit -m "🤖 Auto-update: $(date +'%Y-%m-%d %H:%M')"
+          git push
+        fi
