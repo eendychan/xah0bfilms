@@ -3,326 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рецензии стримера xah0b</title>
+    <title>Рецензии xah0b</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Основные цвета - фиолетовая тема */
-            --primary: #8a2be2;
-            --primary-dark: #6a11cb;
-            --secondary: #00b4d8;
-            --accent: #ff2e63;
-            --success: #06d6a0;
-            
-            /* Темная тема (по умолчанию) */
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #1a1a2e;
-            --bg-glass: rgba(26, 26, 46, 0.7);
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0c0;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            --hover-glow: 0 0 15px rgba(138, 43, 226, 0.5);
+            /* Темная тема (по умолчанию) - почти черная */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #222222;
+            --text-primary: #f0f0f0;
+            --text-secondary: #aaaaaa;
+            --border: #333333;
+            --accent: #6c5ce7;
+            --accent-hover: #5b4fcf;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
-        /* Светлая тема */
+        /* Светлая тема - светло-серая */
         .light-theme {
-            --bg-primary: #f8f9fa;
+            --bg-primary: #f5f5f5;
             --bg-secondary: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.7);
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a4a6e;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --hover-glow: 0 0 15px rgba(138, 43, 226, 0.2);
+            --bg-card: #fafafa;
+            --text-primary: #222222;
+            --text-secondary: #666666;
+            --border: #e0e0e0;
+            --accent: #6c5ce7;
+            --accent-hover: #5b4fcf;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.5;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Эффект стекла */
-        .glass {
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-
-        /* Контейнер */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Шапка */
-        .header {
-            padding: 30px 0;
+        /* Компактная шапка */
+        .top-bar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .header-content {
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            margin-bottom: 20px;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-        }
-
-        .logo-text h1 {
-            font-size: 28px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .logo-text p {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        /* Кнопки соцсетей */
         .social-buttons {
             display: flex;
-            gap: 15px;
+            gap: 8px;
         }
 
         .social-btn {
-            padding: 12px 24px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+            justify-content: center;
             color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: transform 0.2s, opacity 0.2s;
         }
 
         .social-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--hover-glow);
+            transform: translateY(-2px);
+            opacity: 0.9;
         }
 
         .social-btn.twitch {
-            background: linear-gradient(135deg, #9146ff, #772ce8);
+            background: #9146ff;
         }
 
         .social-btn.telegram {
-            background: linear-gradient(135deg, #0088cc, #006699);
+            background: #0088cc;
         }
 
         .social-btn.youtube {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: #ff0000;
         }
 
-        /* Панель управления */
+        /* Компактная панель управления */
         .controls {
-            padding: 25px;
-            margin-bottom: 30px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
         }
 
         .search-box {
             position: relative;
-            margin-bottom: 25px;
+            margin-bottom: 16px;
         }
 
         .search-input {
             width: 100%;
-            padding: 18px 25px 18px 55px;
-            border-radius: 14px;
-            font-size: 16px;
-            background: var(--bg-glass);
-            border: 1px solid var(--border-color);
+            padding: 12px 20px 12px 45px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
             color: var(--text-primary);
+            font-size: 14px;
             outline: none;
         }
 
         .search-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
         }
 
         .search-icon {
             position: absolute;
-            left: 25px;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
         }
 
-        /* Кнопки фильтров */
+        /* Компактные кнопки фильтров */
         .filter-buttons {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
         .filter-btn {
-            padding: 14px 28px;
-            border-radius: 12px;
-            background: var(--bg-glass);
-            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             color: var(--text-secondary);
-            font-weight: 600;
+            font-size: 13px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 16px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* Основной контент - компактный */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .filter-btn:hover {
-            background: rgba(138, 43, 226, 0.1);
-            color: var(--primary);
-            border-color: var(--primary);
+        .category-title i {
+            color: var(--accent);
         }
 
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Сетка контента */
+        /* Компактная сетка контента */
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
         }
 
-        /* Секции по категориям */
-        .category-section {
-            margin-bottom: 60px;
-        }
-
-        .category-title {
-            font-size: 32px;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .category-title i {
-            color: var(--primary);
-        }
-
-        /* Карточка контента */
+        /* Компактные карточки */
         .content-card {
             position: relative;
-            height: 400px;
-            border-radius: 16px;
+            border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
         }
 
         .content-banner {
             width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
-            border-radius: 16px;
-            transition: transform 0.5s ease;
-        }
-
-        .content-card:hover .content-banner {
-            transform: scale(1.05);
-        }
-
-        .content-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 25px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-            border-radius: 0 0 16px 16px;
+            display: block;
         }
 
         .content-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: white;
-        }
-
-        .content-meta {
-            display: flex;
-            gap: 15px;
-            color: var(--text-secondary);
+            padding: 12px;
             font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            color: var(--text-primary);
         }
 
-        .content-rating {
-            color: gold;
-            font-weight: 600;
-        }
-
-        /* Окно информации */
+        /* Информационная панель при наведении */
         .info-panel {
             position: absolute;
             top: 0;
-            width: 320px;
+            width: 280px;
             height: 100%;
-            background: var(--bg-glass);
-            backdrop-filter: blur(15px) saturate(180%);
-            -webkit-backdrop-filter: blur(15px) saturate(180%);
-            border-radius: 16px;
-            padding: 25px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
             overflow-y: auto;
-            z-index: 10;
+            z-index: 100;
             display: none;
-            border: 1px solid var(--border-color);
             box-shadow: var(--shadow);
         }
 
         .info-panel::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
 
         .info-panel::-webkit-scrollbar-track {
@@ -330,8 +256,8 @@
         }
 
         .info-panel::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 3px;
+            background: var(--accent);
+            border-radius: 2px;
         }
 
         .content-card:hover .info-panel {
@@ -340,616 +266,439 @@
 
         .info-panel.right {
             left: 0;
-            border-radius: 16px 0 0 16px;
         }
 
         .info-panel.left {
             right: 0;
-            border-radius: 0 16px 16px 0;
         }
 
+        /* Минималистичное содержимое панели */
         .info-title {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .info-description {
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-        }
-
-        .info-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
         }
 
         .info-item {
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
         }
 
         .info-item i {
-            color: var(--primary);
-            width: 20px;
+            color: var(--accent);
+            width: 16px;
+            text-align: center;
         }
 
-        .watch-link {
+        .status-badge {
             display: inline-block;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
             font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-watched { background: rgba(76, 175, 80, 0.15); color: #4caf50; }
+        .status-watching { background: rgba(33, 150, 243, 0.15); color: #2196f3; }
+        .status-dropped { background: rgba(244, 67, 54, 0.15); color: #f44336; }
+        .status-onhold { background: rgba(255, 152, 0, 0.15); color: #ff9800; }
+
+        .watch-link {
+            display: block;
+            margin-top: 16px;
+            padding: 10px;
+            background: var(--accent);
+            color: white;
             text-align: center;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            width: 100%;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
         }
 
         .watch-link:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--hover-glow);
+            background: var(--accent-hover);
         }
 
         /* Переключатель темы */
         .theme-toggle {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--bg-glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
+            bottom: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 100;
             box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: rotate(30deg) scale(1.1);
         }
 
         .theme-toggle i {
-            font-size: 24px;
-            color: var(--primary);
+            color: var(--accent);
+            font-size: 18px;
         }
 
         /* Футер */
         .footer {
             text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            border-top: 1px solid var(--border-color);
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
             color: var(--text-secondary);
+            font-size: 13px;
         }
 
         /* Адаптивность */
-        @media (max-width: 1200px) {
-            .content-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-        }
-
         @media (max-width: 768px) {
-            .header-content {
+            .top-bar-content {
                 flex-direction: column;
-                gap: 20px;
+                gap: 12px;
+                align-items: stretch;
             }
             
             .social-buttons {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .social-btn {
-                flex: 1;
                 justify-content: center;
             }
             
             .content-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             
             .info-panel {
-                width: 280px;
+                width: 240px;
             }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 480px) {
             .content-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .filter-buttons {
-                flex-direction: column;
-            }
-            
-            .social-buttons {
-                flex-direction: column;
+                justify-content: center;
             }
             
             .info-panel {
-                width: 100%;
-                position: relative;
+                display: none !important;
+            }
+            
+            .mobile-info {
                 display: block !important;
-                margin-top: 15px;
-                height: auto;
-                max-height: 300px;
-            }
-            
-            .content-card {
-                height: auto;
-            }
-            
-            .content-card:hover .content-banner {
-                transform: none;
+                padding: 12px;
+                font-size: 12px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Минималистичная шапка -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="logo">
+                <span style="font-weight: 600; color: var(--accent);">xah0b</span>
+                <span style="color: var(--text-secondary); font-size: 13px; margin-left: 8px;">archive</span>
+            </div>
+            <div class="social-buttons">
+                <a href="https://twitch.tv/xah0b" class="social-btn twitch" title="Twitch" target="_blank">
+                    <i class="fab fa-twitch"></i>
+                </a>
+                <a href="https://t.me/xah0b" class="social-btn telegram" title="Telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://youtube.com/hape3hoecamapa" class="social-btn youtube" title="YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Компактные контролы -->
+    <div class="controls">
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Поиск..." id="searchInput">
+        </div>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="films">Фильмы</button>
+            <button class="filter-btn" data-filter="anime">Аниме</button>
+            <button class="filter-btn" data-filter="films-anime">Фильмо-аниме</button>
+            <button class="filter-btn" data-filter="series">Многосерийное</button>
+            <button class="filter-btn" data-filter="other">Прочее</button>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="main-content" id="contentContainer">
+        <!-- Данные будут загружены из data.json -->
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div>© 2024 xah0b • Просмотрено <span id="totalCount">0</span> тайтлов</div>
+        <div style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Данные обновляются автоматически</div>
+    </footer>
+
     <!-- Переключатель темы -->
     <div class="theme-toggle" id="themeToggle">
         <i class="fas fa-moon"></i>
     </div>
 
-    <!-- Шапка -->
-    <header class="header glass">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon glass">X</div>
-                    <div class="logo-text">
-                        <h1>xah0b archive</h1>
-                        <p>Рецензии на просмотренный контент</p>
-                    </div>
-                </div>
-                
-                <div class="social-buttons">
-                    <a href="https://twitch.tv/xah0b" class="social-btn twitch" target="_blank">
-                        <i class="fab fa-twitch"></i> Twitch
-                    </a>
-                    <a href="https://t.me/xah0b" class="social-btn telegram" target="_blank">
-                        <i class="fab fa-telegram"></i> Telegram
-                    </a>
-                    <a href="https://youtube.com/hape3hoecamapa" class="social-btn youtube" target="_blank">
-                        <i class="fab fa-youtube"></i> YouTube
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Панель управления -->
-            <div class="controls glass">
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-input glass" placeholder="Поиск по названию, жанру или году..." id="searchInput">
-                </div>
-                
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">
-                        <i class="fas fa-globe"></i> Все
-                    </button>
-                    <button class="filter-btn" data-filter="films">
-                        <i class="fas fa-film"></i> Фильмы
-                    </button>
-                    <button class="filter-btn" data-filter="anime">
-                        <i class="fas fa-dragon"></i> Аниме
-                    </button>
-                    <button class="filter-btn" data-filter="films-anime">
-                        <i class="fas fa-theater-masks"></i> Фильмо-аниме
-                    </button>
-                    <button class="filter-btn" data-filter="series">
-                        <i class="fas fa-tv"></i> Многосерийное
-                    </button>
-                    <button class="filter-btn" data-filter="other">
-                        <i class="fas fa-ellipsis-h"></i> Прочее
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Основной контент -->
-    <main class="container">
-        <!-- Фильмы -->
-        <section class="category-section" id="films-section">
-            <h2 class="category-title">
-                <i class="fas fa-film"></i> Фильмы
-            </h2>
-            <div class="content-grid">
-                <!-- Карточка 1 -->
-                <div class="content-card glass" data-category="films">
-                    <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/9de4a4b8-6a0c-4232-8c5f-3bc995e8c996/600x900" alt="Интерстеллар" class="content-banner">
-                    <div class="content-overlay">
-                        <h3 class="content-title">Интерстеллар</h3>
-                        <div class="content-meta">
-                            <span class="content-rating">⭐ 9.1/10</span>
-                            <span>2014 • 2ч 49м</span>
-                        </div>
-                    </div>
-                    <div class="info-panel right">
-                        <h4 class="info-title">Интерстеллар</h4>
-                        <p class="info-description">Фантастический эпос о путешествии группы исследователей, которые используют недавно обнаруженный пространственно-временной тоннель, чтобы обойти ограничения космических путешествий человека и покорить огромные расстояния на межзвёздном корабле.</p>
-                        <div class="info-meta">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span>Оценка: 9.1/10</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar"></i>
-                                <span>Год: 2014</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Длительность: 2ч 49м</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-tags"></i>
-                                <span>Жанры: Фантастика, Драма, Приключения</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/videos/123456789" class="watch-link" target="_blank">
-                            <i class="fas fa-play-circle"></i> Смотреть запись стрима
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Карточка 2 -->
-                <div class="content-card glass" data-category="films">
-                    <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4cd8-9c74-2c2c21b65499/600x900" alt="Бойцовский клуб" class="content-banner">
-                    <div class="content-overlay">
-                        <h3 class="content-title">Бойцовский клуб</h3>
-                        <div class="content-meta">
-                            <span class="content-rating">⭐ 8.7/10</span>
-                            <span>1999 • 2ч 19м</span>
-                        </div>
-                    </div>
-                    <div class="info-panel left">
-                        <h4 class="info-title">Бойцовский клуб</h4>
-                        <p class="info-description">Страдающий от бессонницы клерк встречает неординарного человека по имени Тайлер Дёрден, основателя подпольного бойцовского клуба, который перерастает во что-то большее, чем просто драки.</p>
-                        <div class="info-meta">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span>Оценка: 8.7/10</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar"></i>
-                                <span>Год: 1999</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <span>Длительность: 2ч 19м</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/videos/987654321" class="watch-link" target="_blank">
-                            <i class="fas fa-play-circle"></i> Смотреть запись стрима
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Аниме -->
-        <section class="category-section" id="anime-section">
-            <h2 class="category-title">
-                <i class="fas fa-dragon"></i> Аниме
-            </h2>
-            <div class="content-grid">
-                <!-- Карточка 1 -->
-                <div class="content-card glass" data-category="anime">
-                    <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16498-buvcRTBx4NSm.jpg" alt="Атака титанов" class="content-banner">
-                    <div class="content-overlay">
-                        <h3 class="content-title">Атака титанов</h3>
-                        <div class="content-meta">
-                            <span class="content-rating">⭐ 9.5/10</span>
-                            <span>2013 • 25 сезонов</span>
-                        </div>
-                    </div>
-                    <div class="info-panel right">
-                        <h4 class="info-title">Атака титанов</h4>
-                        <p class="info-description">Человечество доживает свои последние дни, запертое в городах-крепостях от нападений огромных человекоподобных существ — титанов. Юный Эрен и его приёмная сестра Микаса становятся свидетелями ужасной трагедии, после которой клянутся уничтожить всех титанов.</p>
-                        <div class="info-meta">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span>Оценка: 9.5/10</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar"></i>
-                                <span>Год: 2013</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-play-circle"></i>
-                                <span>Эпизодов: 88+</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/videos/555555555" class="watch-link" target="_blank">
-                            <i class="fas fa-play-circle"></i> Смотреть запись стрима
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Карточка 2 -->
-                <div class="content-card glass" data-category="anime">
-                    <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-4x3g5p0KQzTv.png" alt="Ковбой Бибоп" class="content-banner">
-                    <div class="content-overlay">
-                        <h3 class="content-title">Ковбой Бибоп</h3>
-                        <div class="content-meta">
-                            <span class="content-rating">⭐ 9.0/10</span>
-                            <span>1998 • 26 эп.</span>
-                        </div>
-                    </div>
-                    <div class="info-panel left">
-                        <h4 class="info-title">Ковбой Бибоп</h4>
-                        <p class="info-description">2071 год. Экипаж космического корабля Bebop промышляет охотой на преступников за вознаграждение. В свободное от работы время они пытаются найти ответы на вопросы своего прошлого.</p>
-                        <div class="info-meta">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span>Оценка: 9.0/10</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar"></i>
-                                <span>Год: 1998</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/videos/444444444" class="watch-link" target="_blank">
-                            <i class="fas fa-play-circle"></i> Смотреть запись стрима
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Фильмо-аниме -->
-        <section class="category-section" id="films-anime-section">
-            <h2 class="category-title">
-                <i class="fas fa-theater-masks"></i> Фильмо-аниме
-            </h2>
-            <div class="content-grid">
-                <!-- Карточка 1 -->
-                <div class="content-card glass" data-category="films-anime">
-                    <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx32281-KE4mKtVQdK4q.jpg" alt="Твое имя" class="content-banner">
-                    <div class="content-overlay">
-                        <h3 class="content-title">Твоё имя</h3>
-                        <div class="content-meta">
-                            <span class="content-rating">⭐ 9.2/10</span>
-                            <span>2016 • 1ч 46м</span>
-                        </div>
-                    </div>
-                    <div class="info-panel right">
-                        <h4 class="info-title">Твоё имя</h4>
-                        <p class="info-description">Старшеклассники Мицуха и Таки обнаруживают, что между ними существует странная и необъяснимая связь. Во сне они меняются телами и проживают жизни друг друга.</p>
-                        <div class="info-meta">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span>Оценка: 9.2/10</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar"></i>
-                                <span>Год: 2016</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/videos/333333333" class="watch-link" target="_blank">
-                            <i class="fas fa-play-circle"></i> Смотреть запись стрима
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Многосерийное -->
-        <section class="category-section" id="series-section">
-            <h2 class="category-title">
-                <i class="fas fa-tv"></i> Многосерийное
-            </h2>
-            <div class="content-grid">
-                <!-- Карточка 1 -->
-                <div class="content-card glass" data-category="series">
-                    <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/dfa4c9ac-8d41-4263-8ef9-572c8f5d6e30/600x900" alt="Игра престолов" class="content-banner">
-                    <div class="content-overlay">
-                        <h3 class="content-title">Игра престолов</h3>
-                        <div class="content-meta">
-                            <span class="content-rating">⭐ 8.9/10</span>
-                            <span>2011 • 8 сезонов</span>
-                        </div>
-                    </div>
-                    <div class="info-panel left">
-                        <h4 class="info-title">Игра престолов</h4>
-                        <p class="info-description">К концу лета с благодатных земель Вестероса, где правят короли и королевы, собираются уходить теплые дни. Надвигается зима, а с ней и древние враги, угрожающие самому существованию Семи Королевств.</p>
-                        <div class="info-meta">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span>Оценка: 8.9/10</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar"></i>
-                                <span>Год: 2011-2019</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/videos/222222222" class="watch-link" target="_blank">
-                            <i class="fas fa-play-circle"></i> Смотреть запись стрима
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Прочее -->
-        <section class="category-section" id="other-section">
-            <h2 class="category-title">
-                <i class="fas fa-ellipsis-h"></i> Прочее
-            </h2>
-            <div class="content-grid">
-                <!-- Карточка 1 -->
-                <div class="content-card glass" data-category="other">
-                    <img src="https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/7a6c514c-4f6b-4ae6-8b17-2b6e6f7b1c8d/600x900" alt="Космические рейнджеры" class="content-banner">
-                    <div class="content-overlay">
-                        <h3 class="content-title">Космические рейнджеры</h3>
-                        <div class="content-meta">
-                            <span class="content-rating">⭐ 8.5/10</span>
-                            <span>Игра • 2002</span>
-                        </div>
-                    </div>
-                    <div class="info-panel right">
-                        <h4 class="info-title">Космические рейнджеры</h4>
-                        <p class="info-description">Культовая космическая стратегия с элементами RPG, где игрок становится рейнджером, свободно исследующим галактику, сражающимся с пиратами и спасающим миры от вторжения клисан.</p>
-                        <div class="info-meta">
-                            <div class="info-item">
-                                <i class="fas fa-star"></i>
-                                <span>Оценка: 8.5/10</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-gamepad"></i>
-                                <span>Тип: Компьютерная игра</span>
-                            </div>
-                        </div>
-                        <a href="https://twitch.tv/videos/111111111" class="watch-link" target="_blank">
-                            <i class="fas fa-play-circle"></i> Смотреть запись стрима
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Футер -->
-    <footer class="footer">
-        <div class="container">
-            <p>© 2024 xah0b archive. Все рецензии являются субъективным мнением стримера.</p>
-            <p>Изображения взяты из открытых источников: Kinopoisk, AniList и другие.</p>
-        </div>
-    </footer>
-
     <script>
-        // Переключение темы
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            
-            if (document.body.classList.contains('light-theme')) {
-                themeIcon.className = 'fas fa-sun';
-                themeToggle.title = 'Переключить на темную тему';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeToggle.title = 'Переключить на светлую тему';
-            }
-        });
-
-        // Фильтрация контента
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const contentCards = document.querySelectorAll('.content-card');
-        const searchInput = document.getElementById('searchInput');
-        const categorySections = document.querySelectorAll('.category-section');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Убрать активный класс у всех кнопок
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Добавить активный класс текущей кнопке
-                button.classList.add('active');
-                
-                const filter = button.dataset.filter;
-                
-                // Показать/скрыть карточки
-                contentCards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // Показать/скрыть секции
-                categorySections.forEach(section => {
-                    const sectionId = section.id.replace('-section', '');
-                    if (filter === 'all' || sectionId === filter) {
-                        section.style.display = 'block';
-                    } else {
-                        section.style.display = 'none';
-                    }
-                });
-                
-                // Прокрутить к соответствующей секции
-                if (filter !== 'all') {
-                    document.getElementById(`${filter}-section`).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Поиск
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            contentCards.forEach(card => {
-                const title = card.querySelector('.content-title').textContent.toLowerCase();
-                const description = card.querySelector('.info-description')?.textContent.toLowerCase() || '';
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                    // Показать родительскую секцию
-                    const category = card.dataset.category;
-                    document.getElementById(`${category}-section`).style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Позиционирование информационных панелей
-        contentCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const rect = card.getBoundingClientRect();
-                const panel = card.querySelector('.info-panel');
-                
-                // Определяем, к какой стороне экрана ближе карточка
-                if (rect.left < window.innerWidth / 2) {
-                    panel.classList.remove('right');
-                    panel.classList.add('left');
-                } else {
-                    panel.classList.remove('left');
-                    panel.classList.add('right');
-                }
-            });
-        });
-
-        // Ленивая загрузка для оптимизации (если будет много карточек)
-        const lazyLoad = () => {
-            const cards = document.querySelectorAll('.content-card');
-            
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (rect.top < window.innerHeight + 500) {
-                    // Здесь можно добавить реальную ленивую загрузку изображений
-                    // if (card.dataset.src) {
-                    //     card.querySelector('img').src = card.dataset.src;
-                    //     card.removeAttribute('data-src');
-                    // }
-                }
-            });
+        // Конфигурация
+        const CONFIG = {
+            dataFile: 'data.json',
+            itemsPerPage: 50
         };
 
-        window.addEventListener('scroll', lazyLoad);
-        window.addEventListener('resize', lazyLoad);
-        
+        // Глобальные переменные
+        let allContent = [];
+        let filteredContent = [];
+
+        // Переключение темы
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            themeToggle.innerHTML = document.body.classList.contains('light-theme') 
+                ? '<i class="fas fa-moon"></i>' 
+                : '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        });
+
+        // Загрузка сохраненной темы
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        // Загрузка данных
+        async function loadData() {
+            try {
+                const response = await fetch(CONFIG.dataFile + '?v=' + Date.now());
+                allContent = await response.json();
+                filteredContent = [...allContent];
+                renderContent();
+                updateStats();
+                setupEventListeners();
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+                document.getElementById('contentContainer').innerHTML = 
+                    '<div style="text-align: center; padding: 40px; color: var(--text-secondary)">Ошибка загрузки данных</div>';
+            }
+        }
+
+        // Рендеринг контента
+        function renderContent() {
+            const container = document.getElementById('contentContainer');
+            const categories = {};
+            
+            // Группировка по категориям
+            filteredContent.forEach(item => {
+                if (!categories[item.category]) {
+                    categories[item.category] = [];
+                }
+                categories[item.category].push(item);
+            });
+
+            // Рендер каждой категории
+            let html = '';
+            const categoryOrder = ['films', 'anime', 'films-anime', 'series', 'other'];
+            
+            categoryOrder.forEach(categoryKey => {
+                const items = categories[categoryKey];
+                if (!items || items.length === 0) return;
+                
+                const categoryNames = {
+                    'films': 'Фильмы',
+                    'anime': 'Аниме',
+                    'films-anime': 'Фильмо-аниме',
+                    'series': 'Многосерийное',
+                    'other': 'Прочее'
+                };
+                
+                html += `
+                    <section class="category-section" id="${categoryKey}-section">
+                        <h2 class="category-title">
+                            <i class="${getCategoryIcon(categoryKey)}"></i>
+                            ${categoryNames[categoryKey]} (${items.length})
+                        </h2>
+                        <div class="content-grid">
+                            ${items.map(item => renderItem(item)).join('')}
+                        </div>
+                    </section>
+                `;
+            });
+            
+            container.innerHTML = html || '<div style="text-align: center; padding: 40px; color: var(--text-secondary)">Ничего не найдено</div>';
+            
+            // Переинициализация событий для новых элементов
+            setTimeout(setupCardEvents, 100);
+        }
+
+        // Рендер одной карточки
+        function renderItem(item) {
+            const statusClass = `status-${item.status || 'watched'}`;
+            const statusText = getStatusText(item.status || 'watched');
+            
+            return `
+                <div class="content-card" data-category="${item.category}" data-title="${item.title.toLowerCase()}">
+                    <img src="${item.banner}" alt="${item.title}" class="content-banner" loading="lazy">
+                    <div class="content-title">${item.title}</div>
+                    
+                    <div class="info-panel right">
+                        <h3 class="info-title">${item.title}</h3>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-play-circle"></i>
+                            <span>${item.episodesWatched || 1} серия</span>
+                        </div>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Просмотрено: ${item.watchDate || 'Не указано'}</span>
+                        </div>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-flag"></i>
+                            <span>Статус: <span class="status-badge ${statusClass}">${statusText}</span></span>
+                        </div>
+                        
+                        ${item.streamLink ? `
+                            <a href="${item.streamLink}" class="watch-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Смотреть запись
+                            </a>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="mobile-info" style="display: none; font-size: 12px; color: var(--text-secondary);">
+                        <div>${statusText} • ${item.episodesWatched || 1} серия</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Иконки категорий
+        function getCategoryIcon(category) {
+            const icons = {
+                'films': 'fas fa-film',
+                'anime': 'fas fa-dragon',
+                'films-anime': 'fas fa-theater-masks',
+                'series': 'fas fa-tv',
+                'other': 'fas fa-ellipsis-h'
+            };
+            return icons[category] || 'fas fa-film';
+        }
+
+        // Текст статуса
+        function getStatusText(status) {
+            const statuses = {
+                'watched': 'Посмотрел',
+                'watching': 'В процессе',
+                'dropped': 'Дропнул',
+                'onhold': 'Долг'
+            };
+            return statuses[status] || 'Посмотрел';
+        }
+
+        // Фильтрация
+        function filterContent(category) {
+            if (category === 'all') {
+                filteredContent = [...allContent];
+            } else {
+                filteredContent = allContent.filter(item => item.category === category);
+            }
+            renderContent();
+            
+            // Прокрутка к первой категории
+            const firstSection = document.querySelector('.category-section');
+            if (firstSection) {
+                setTimeout(() => {
+                    firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+
+        // Поиск
+        function searchContent(query) {
+            const searchTerm = query.toLowerCase().trim();
+            if (!searchTerm) {
+                filteredContent = [...allContent];
+            } else {
+                filteredContent = allContent.filter(item => 
+                    item.title.toLowerCase().includes(searchTerm) ||
+                    (item.description && item.description.toLowerCase().includes(searchTerm))
+                );
+            }
+            renderContent();
+        }
+
+        // Настройка событий
+        function setupEventListeners() {
+            // Кнопки фильтров
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    filterContent(e.target.dataset.filter);
+                });
+            });
+
+            // Поиск
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    searchContent(e.target.value);
+                }, 300);
+            });
+
+            // Сброс поиска при нажатии на фильтр
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    searchInput.value = '';
+                });
+            });
+        }
+
+        // Настройка событий для карточек
+        function setupCardEvents() {
+            document.querySelectorAll('.content-card').forEach(card => {
+                card.addEventListener('mouseenter', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const panel = this.querySelector('.info-panel');
+                    
+                    if (rect.left < window.innerWidth / 2) {
+                        panel.classList.remove('right');
+                        panel.classList.add('left');
+                    } else {
+                        panel.classList.remove('left');
+                        panel.classList.add('right');
+                    }
+                });
+            });
+        }
+
+        // Обновление статистики
+        function updateStats() {
+            document.getElementById('totalCount').textContent = allContent.length;
+        }
+
         // Инициализация
-        lazyLoad();
+        loadData();
     </script>
 </body>
 </html>
