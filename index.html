@@ -204,18 +204,18 @@
         .content-card {
             position: relative;
             border-radius: 10px;
-            overflow: visible; /* Меняем на visible чтобы панель не обрезалась */
+            overflow: visible;
             cursor: pointer;
             background: var(--bg-card);
             border: 1px solid var(--border);
             transition: transform 0.2s, box-shadow 0.2s;
-            height: 320px; /* Фиксированная высота */
+            height: 320px;
         }
 
         .content-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow);
-            z-index: 50; /* Повышаем z-index при наведении */
+            z-index: 50;
         }
 
         .content-banner {
@@ -224,7 +224,7 @@
             object-fit: cover;
             display: block;
             border-radius: 10px 10px 0 0;
-            background: linear-gradient(45deg, #222, #333); /* Фон на случай ошибки */
+            background: linear-gradient(45deg, #222, #333);
         }
 
         .banner-error {
@@ -247,7 +247,7 @@
             font-weight: 500;
             text-align: center;
             color: var(--text-primary);
-            height: 70px; /* Фиксированная высота для названия */
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -260,20 +260,20 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 376px; /* 180px × 2 + 16px (gap) = 376px */
-            min-height: 320px; /* Такая же высота как у карточки */
-            max-height: 320px; /* Ограничиваем высоту */
+            width: 376px;
+            min-height: 320px;
+            max-height: 320px;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 20px;
-            overflow-y: auto; /* Только вертикальный скролл */
-            overflow-x: hidden; /* Запрещаем горизонтальный скролл */
+            overflow-y: auto;
+            overflow-x: hidden;
             z-index: 100;
             display: none;
             box-shadow: var(--shadow);
-            pointer-events: auto; /* Разрешаем взаимодействие */
-            box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+            pointer-events: auto;
+            box-sizing: border-box;
         }
 
         .info-panel::-webkit-scrollbar {
@@ -289,10 +289,10 @@
             border-radius: 3px;
         }
 
-        /* Содержимое панели - теперь все помещается */
+        /* Содержимое панели */
         .info-content {
             width: 100%;
-            max-width: 336px; /* 376px - 20px×2 padding */
+            max-width: 336px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -342,7 +342,7 @@
             white-space: normal;
         }
 
-        /* Статус в отдельной строке */
+        /* Статус */
         .status-container {
             display: flex;
             align-items: center;
@@ -370,14 +370,14 @@
         .content-card:hover .info-panel.right {
             display: flex;
             flex-direction: column;
-            left: calc(100% + 10px); /* Справа от карточки */
+            left: calc(100% + 10px);
         }
 
         .content-card:hover .info-panel.left {
             display: flex;
             flex-direction: column;
             left: auto;
-            right: calc(100% + 10px); /* Слева от карточки */
+            right: calc(100% + 10px);
         }
 
         /* Адаптация для краев экрана */
@@ -391,9 +391,9 @@
             right: auto;
         }
 
-        /* Кнопка просмотра всегда видна */
+        /* Кнопка просмотра */
         .watch-link-container {
-            margin-top: auto; /* Прижимаем к низу */
+            margin-top: auto;
             padding-top: 15px;
             border-top: 1px solid var(--border);
         }
@@ -454,7 +454,7 @@
         /* Адаптивность */
         @media (max-width: 900px) {
             .info-panel {
-                width: 340px; /* Немного меньше на планшетах */
+                width: 340px;
             }
             
             .info-content {
@@ -485,7 +485,6 @@
                 max-width: 280px;
             }
             
-            /* На мобильных показываем панель снизу */
             .content-card:hover .info-panel.right,
             .content-card:hover .info-panel.left {
                 left: 50% !important;
@@ -711,7 +710,7 @@
         function renderItem(item, index) {
             const statusClass = `status-${item.status || 'watched'}`;
             const statusText = getStatusText(item.status || 'watched');
-            const isLeft = index % 2 === 0; // Четные карточки показывают панель слева
+            const isLeft = index % 2 === 0;
             
             return `
                 <div class="content-card" data-category="${item.category}" data-title="${item.title.toLowerCase()}" data-index="${index}">
