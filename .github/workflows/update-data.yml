@@ -1,4 +1,5 @@
 name: Update Content Data
+
 on:
   schedule:
     # Запускать каждый день в 3:00 UTC
@@ -18,17 +19,18 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
         
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.9'
         
     - name: Install dependencies
       run: |
+        python -m pip install --upgrade pip
         pip install requests
         
     - name: Run update script
@@ -37,14 +39,16 @@ jobs:
         
     - name: Commit and push if changes
       run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         
         # Проверяем, есть ли изменения
-        if git diff --quiet data.json; then
-          echo "No changes to commit"
-        else
+        if [[ -n $(git status --porcelain data.json) ]]; then
+          echo "Changes detected in data.json"
           git add data.json
-          git commit -m "🤖 Auto-update: $(date +'%Y-%m-%d %H:%M')"
+          git commit -m "🤖 Auto-update content data [skip ci]"
           git push
+          echo "Changes pushed successfully"
+        else
+          echo "No changes to commit"
         fi
