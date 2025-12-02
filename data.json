@@ -9,15 +9,21 @@
     "description": "Фантастический эпос о путешествии через червоточину",
     "buttons": [
       {
-        "text": "📺 Смотреть запись",
+        "text": "Смотреть запись",
         "url": "https://twitch.tv/videos/123456789",
         "color": "#9146ff",
         "size": "large"
       },
       {
-        "text": "🎬 Обсуждение в VK",
-        "url": "https://vk.com/xah0b_club",
-        "color": "#4c75a3",
+        "text": "Telegram",
+        "url": "https://t.me/xah0b",
+        "color": "#0088cc",
+        "size": "small"
+      },
+      {
+        "text": "YouTube",
+        "url": "https://youtube.com/hape3hoecamapa",
+        "color": "#ff0000",
         "size": "small"
       }
     ]
@@ -54,7 +60,7 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BODRlNDUxZmItYWY2NC00ZDBhLWIxMGEtZjU1ZDE4ZDIyOTM0XkEyXkFqcGdeQXVyNjc2NzA2MTM@._V1_FMjpg_UX600_.jpg",
     "status": "watching",
     "watchDate": "В процессе",
-    "episodesWatched": 43,
+    "episodesWatched": 42,
     "description": "Эпическая сага о выживании человечества",
     "buttons": [
       {
@@ -64,15 +70,15 @@
         "size": "large"
       },
       {
-        "text": "🎥 Часть 11-20",
-        "url": "https://twitch.tv/videos/555555556",
-        "color": "#6c5ce7",
-        "size": "large"
-      },
-      {
-        "text": "💬 Обсудить в Telegram",
+        "text": "💬 Обсуждение",
         "url": "https://t.me/xah0b_discuss",
         "color": "#0088cc",
+        "size": "small"
+      },
+      {
+        "text": "VK",
+        "url": "https://vk.com/xah0b_club",
+        "color": "#4c75a3",
         "size": "small"
       }
     ]
@@ -91,7 +97,6 @@
         "text": "Смотреть на Twitch",
         "url": "https://twitch.tv/videos/444444444",
         "color": "#9146ff",
-        "icon": "fab fa-twitch",
         "size": "large"
       }
     ]
@@ -129,10 +134,9 @@
         "size": "small"
       },
       {
-        "text": "Обсуждение финала",
+        "text": "Telegram",
         "url": "https://t.me/xah0b_got",
         "color": "#0088cc",
-        "icon": "fab fa-telegram",
         "size": "small"
       }
     ]
@@ -153,7 +157,7 @@
         "size": "large"
       },
       {
-        "text": "Twitch VOD",
+        "text": "Twitch",
         "url": "https://twitch.tv/videos/666666666",
         "color": "#9146ff",
         "size": "small"
@@ -167,37 +171,25 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX600_.jpg",
     "status": "watching",
     "watchDate": "В процессе",
-    "episodesWatched": 121,
+    "episodesWatched": 120,
     "description": "История ниндзя, мечтающего стать хокаге",
     "buttons": [
       {
-        "text": "📺 Арка Зари",
+        "text": "Арка Зари",
         "url": "https://twitch.tv/videos/777777771",
         "color": "#ff9800",
         "size": "small"
       },
       {
-        "text": "📺 Арка Тсунаде",
+        "text": "Арка Тсунаде",
         "url": "https://twitch.tv/videos/777777772",
         "color": "#ff5722",
         "size": "small"
       },
       {
-        "text": "📺 Арка Итачи",
-        "url": "https://twitch.tv/videos/777777773",
-        "color": "#f44336",
-        "size": "small"
-      },
-      {
-        "text": "💬 Обсуждение",
+        "text": "Обсуждение",
         "url": "https://t.me/xah0b_naruto",
         "color": "#0088cc",
-        "size": "small"
-      },
-      {
-        "text": "🎉 50 эпизодов!",
-        "url": "https://twitch.tv/videos/419005124",
-        "color": "#ff9800",
         "size": "small"
       }
     ]
@@ -215,7 +207,6 @@
         "text": "Смотреть запись",
         "url": "https://twitch.tv/videos/888888888",
         "color": "#9146ff",
-        "icon": "fab fa-twitch",
         "size": "large"
       }
     ]
@@ -236,7 +227,7 @@
         "size": "large"
       },
       {
-        "text": "🗓️ Напоминание",
+        "text": "Напоминание",
         "url": "https://t.me/xah0b_reminder_bot",
         "color": "#0088cc",
         "size": "small"
