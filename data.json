@@ -26,7 +26,8 @@
         "color": "#ff0000",
         "size": "small"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 2,
@@ -51,7 +52,8 @@
         "icon": "fab fa-youtube",
         "size": "small"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 3,
@@ -81,7 +83,8 @@
         "color": "#4c75a3",
         "size": "small"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 4,
@@ -99,7 +102,8 @@
         "color": "#9146ff",
         "size": "large"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 5,
@@ -109,7 +113,8 @@
     "status": "watched",
     "watchDate": "20.01.2024",
     "description": "Романтическая история о телепортации душ",
-    "streamLink": "https://twitch.tv/videos/333333333"
+    "streamLink": "https://twitch.tv/videos/333333333",
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 6,
@@ -139,7 +144,8 @@
         "color": "#0088cc",
         "size": "small"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 7,
@@ -162,7 +168,8 @@
         "color": "#9146ff",
         "size": "small"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 8,
@@ -192,7 +199,8 @@
         "color": "#0088cc",
         "size": "small"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 9,
@@ -209,7 +217,8 @@
         "color": "#9146ff",
         "size": "large"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   },
   {
     "id": 10,
@@ -232,6 +241,7 @@
         "color": "#0088cc",
         "size": "small"
       }
-    ]
+    ],
+    "lastUpdated": "2025-12-02 13:59:15"
   }
 ]
