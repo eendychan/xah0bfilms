@@ -54,7 +54,7 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BODRlNDUxZmItYWY2NC00ZDBhLWIxMGEtZjU1ZDE4ZDIyOTM0XkEyXkFqcGdeQXVyNjc2NzA2MTM@._V1_FMjpg_UX600_.jpg",
     "status": "watching",
     "watchDate": "В процессе",
-    "episodesWatched": 42,
+    "episodesWatched": 43,
     "description": "Эпическая сага о выживании человечества",
     "buttons": [
       {
@@ -167,7 +167,7 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX600_.jpg",
     "status": "watching",
     "watchDate": "В процессе",
-    "episodesWatched": 120,
+    "episodesWatched": 121,
     "description": "История ниндзя, мечтающего стать хокаге",
     "buttons": [
       {
@@ -192,6 +192,12 @@
         "text": "💬 Обсуждение",
         "url": "https://t.me/xah0b_naruto",
         "color": "#0088cc",
+        "size": "small"
+      },
+      {
+        "text": "🎉 50 эпизодов!",
+        "url": "https://twitch.tv/videos/419005124",
+        "color": "#ff9800",
         "size": "small"
       }
     ]
