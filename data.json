@@ -1,17 +1,17 @@
 [
   {
     "id": 1,
-    "title": "Интерстеллар",
-    "category": "films",
-    "banner": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX600_.jpg",
+    "title": "Эксперименты Лэйн",
+    "category": "anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx339-xF2wp1NQuQ4r.png",
     "status": "watched",
-    "watchDate": "15.01.2024",
-    "description": "Фантастический эпос о путешествии через червоточину",
+    "watchDate": "не ебу",
+    "description": "Сашку не понравилось, слишком запутанная хуйня",
     "buttons": [
       {
-        "text": "Смотреть запись",
-        "url": "https://twitch.tv/videos/123456789",
-        "color": "#9146ff",
+        "text": "1-2 Серия",
+        "url": "https://boosty.to/xah0b_vods/posts/0b63928c-4876-4eca-8a2e-d2d7cdc1c15c?share=post_link",
+        "color": "#ff9800",
         "size": "large"
       },
       {
