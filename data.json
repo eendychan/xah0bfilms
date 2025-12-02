@@ -4,8 +4,8 @@
     "title": "Эксперименты Лэйн",
     "category": "anime",
     "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx339-xF2wp1NQuQ4r.png",
-    "status": "watched",
-    "watchDate": "не ебу",
+    "status": "dropped",
+    "watchDate": "Донатофон 2024",
     "description": "Сашку не понравилось, слишком запутанная хуйня",
     "buttons": [
       {
@@ -13,59 +13,82 @@
         "url": "https://boosty.to/xah0b_vods/posts/0b63928c-4876-4eca-8a2e-d2d7cdc1c15c?share=post_link",
         "color": "#ff9800",
         "size": "large"
-      },
-      {
-        "text": "Telegram",
-        "url": "https://t.me/xah0b",
-        "color": "#0088cc",
-        "size": "small"
       }
     ]
   },
   {
     "id": 2,
-    "title": "Бойцовский клуб",
-    "category": "films",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX600_.jpg",
+    "title": "Реинкарнация безработного: История о приключениях в другом мире",
+    "category": "anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx108465-1ANspF1EWyFx.jpg",
     "status": "watched",
-    "watchDate": "10.01.2024",
-    "description": "Культовый фильм о подпольном бойцовском клубе",
+    "watchDate": "хз бородатые времена пиздец",
+    "episodesWatched": 11,
+    "description": "Он дрочил на эльфийку",
     "buttons": [
       {
-        "text": "Twitch",
-        "url": "https://twitch.tv/videos/987654321",
-        "color": "#9146ff",
-        "size": "small"
+        "text": "1-7 Серия",
+        "url": "https://boosty.to/xah0b/posts/fc65c43a-ba27-4363-81be-e47021e3dfb3?share=post_link",
+        "color": "#ff9800",
+        "size": "large"
       },
       {
-        "text": "YouTube",
-        "url": "https://youtube.com/watch?v=abc123",
-        "color": "#ff0000",
-        "size": "small"
+        "text": "8-11 Серия (Платно)",
+        "url": "https://boosty.to/xah0b/posts/e787d654-92bf-4c06-8514-96c8995dbee6?share=post_link",
+        "color": "#ff9800",
+        "size": "large"
       }
     ]
   },
   {
     "id": 3,
-    "title": "Атака титанов",
+    "title": "Реинкарнация безработного: История о приключениях в другом мире (1 Сезон, 2 Часть)",
     "category": "anime",
-    "banner": "https://m.media-amazon.com/images/M/MV5BODRlNDUxZmItYWY2NC00ZDBhLWIxMGEtZjU1ZDE4ZDIyOTM0XkEyXkFqcGdeQXVyNjc2NzA2MTM@._V1_FMjpg_UX600_.jpg",
-    "status": "watching",
-    "watchDate": "В процессе",
-    "episodesWatched": 42,
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127720-ADJgIrUVMdU9.jpg",
+    "status": "onhold",
+    "watchDate": "хз бородатые времена пиздец",
+    "episodesWatched": "6/12",
+    "description": "Он дрочил на эльфийку точно 100%",
+    "buttons": [
+      {
+        "text": "1-6 Серия",
+        "url": "https://boosty.to/xah0b/posts/fc65c43a-ba27-4363-81be-e47021e3dfb3?share=post_link",
+        "color": "#ff9800",
+        "size": "large"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Люпен III: Первый",
+    "category": "films-anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx110413-0KLlv2NsuSyI.jpg",
+    "status": "watched",
+    "watchDate": "Донатофон 2024",
     "description": "Эпическая сага о выживании человечества",
     "buttons": [
       {
         "text": "Часть 1-10",
         "url": "https://twitch.tv/videos/555555555",
-        "color": "#9146ff",
+        "color": "#ff9800",
         "size": "large"
-      },
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Пила 2",
+    "category": "films",
+    "banner": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/cfa2dea7-d1be-4da6-951c-278a535a4660/720x",
+    "status": "watched",
+    "watchDate": "Марафон Какту 2025",
+    "description": "ft. Какту, Жожо, Ека",
+    "buttons": [
       {
-        "text": "Обсуждение",
-        "url": "https://t.me/xah0b_discuss",
-        "color": "#0088cc",
-        "size": "small"
+        "text": "Запись стрима",
+        "url": "https://boosty.to/cacto0ostreams/posts/ee1164d7-3093-4c75-a817-11c33f790b67?share=post_link",
+        "color": "#ff9800",
+        "size": "large"
       }
     ]
   }
