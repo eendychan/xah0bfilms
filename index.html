@@ -391,31 +391,67 @@
             right: auto;
         }
 
-        /* Кнопка просмотра */
-        .watch-link-container {
+        /* Кнопки просмотра - НОВЫЕ СТИЛИ */
+        .watch-buttons {
             margin-top: auto;
             padding-top: 15px;
             border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .watch-link {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 10px;
-            background: var(--accent);
-            color: white;
-            text-align: center;
             border-radius: 8px;
             text-decoration: none;
             font-size: 13px;
             font-weight: 500;
-            transition: background 0.2s;
+            transition: all 0.2s;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            gap: 8px;
+            color: white;
+            text-align: center;
         }
 
         .watch-link:hover {
-            background: var(--accent-hover);
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Размеры кнопок */
+        .watch-link.size-large {
+            padding: 12px 16px;
+            font-size: 14px;
+        }
+
+        .watch-link.size-small {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+
+        /* Иконки для популярных сервисов */
+        .watch-link[href*="twitch"] i.fab.fa-twitch,
+        .watch-link[href*="twitch.tv"] i.fab.fa-twitch {
+            color: #9146ff;
+        }
+
+        .watch-link[href*="youtube"] i.fab.fa-youtube,
+        .watch-link[href*="youtu.be"] i.fab.fa-youtube {
+            color: #ff0000;
+        }
+
+        .watch-link[href*="vk"] i.fab.fa-vk {
+            color: #4c75a3;
+        }
+
+        .watch-link[href*="telegram"] i.fab.fa-telegram {
+            color: #0088cc;
         }
 
         /* Переключатель темы */
@@ -493,6 +529,10 @@
                 top: calc(100% + 10px);
                 width: 90vw;
                 max-width: 320px;
+            }
+            
+            .watch-buttons {
+                flex-direction: column;
             }
         }
 
@@ -579,7 +619,7 @@
     <!-- Футер -->
     <footer class="footer">
         <div>© 2042 xah0b • Просмотрено <span id="totalCount">0</span> тайтлов</div>
-        <div style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Нейронки делают вещи WW / По всем вопросам (TG) @echmodbot</div>
+        <div style="margin-top: 4px; font-size: 12px; opacity: 0.7;">Нейронки делают вещи WW • По всем вопросам (TG) @echmodbot</div>
     </footer>
 
     <!-- Переключатель темы -->
@@ -628,6 +668,39 @@
                 img.onerror = () => resolve(fallback);
                 img.src = url;
             });
+        }
+
+        // Функция для генерации иконок на основе текста или URL
+        function getIconForButton(text, url) {
+            const lowerText = text.toLowerCase();
+            const lowerUrl = url.toLowerCase();
+            
+            if (lowerText.includes('twitch') || lowerUrl.includes('twitch')) {
+                return 'fab fa-twitch';
+            }
+            if (lowerText.includes('youtube') || lowerUrl.includes('youtube') || lowerUrl.includes('youtu.be')) {
+                return 'fab fa-youtube';
+            }
+            if (lowerText.includes('vk') || lowerUrl.includes('vk.com')) {
+                return 'fab fa-vk';
+            }
+            if (lowerText.includes('telegram') || lowerUrl.includes('t.me')) {
+                return 'fab fa-telegram';
+            }
+            if (lowerText.includes('discord')) {
+                return 'fab fa-discord';
+            }
+            if (lowerText.includes('twitter') || lowerText.includes('x.com')) {
+                return 'fab fa-twitter';
+            }
+            if (lowerText.includes('rutube')) {
+                return 'fas fa-video';
+            }
+            if (lowerText.includes('яндекс') || lowerUrl.includes('yandex')) {
+                return 'fab fa-yandex';
+            }
+            
+            return 'fas fa-external-link-alt'; // Иконка по умолчанию
         }
 
         // Загрузка данных
@@ -712,6 +785,32 @@
             const statusText = getStatusText(item.status || 'watched');
             const isLeft = index % 2 === 0;
             
+            // Рендер кастомных кнопок
+            let buttonsHTML = '';
+            if (item.buttons && Array.isArray(item.buttons)) {
+                buttonsHTML = item.buttons.map(button => {
+                    const iconClass = button.icon || getIconForButton(button.text, button.url);
+                    const sizeClass = button.size === 'small' ? 'size-small' : 'size-large';
+                    const buttonStyle = button.color ? `style="background: ${button.color};"` : '';
+                    
+                    return `
+                        <a href="${button.url}" class="watch-link ${sizeClass}" target="_blank" ${buttonStyle}>
+                            <i class="${iconClass}"></i>
+                            ${button.text}
+                        </a>
+                    `;
+                }).join('');
+            } else if (item.streamLink) {
+                // Обратная совместимость со старым форматом
+                const iconClass = getIconForButton('Смотреть запись', item.streamLink);
+                buttonsHTML = `
+                    <a href="${item.streamLink}" class="watch-link size-large" target="_blank" style="background: var(--accent);">
+                        <i class="${iconClass}"></i>
+                        Смотреть запись
+                    </a>
+                `;
+            }
+            
             return `
                 <div class="content-card" data-category="${item.category}" data-title="${item.title.toLowerCase()}" data-index="${index}">
                     ${item.banner.includes('unsplash') ? 
@@ -760,11 +859,9 @@
                                 ` : ''}
                             </div>
                             
-                            ${item.streamLink ? `
-                                <div class="watch-link-container">
-                                    <a href="${item.streamLink}" class="watch-link" target="_blank">
-                                        <i class="fas fa-external-link-alt"></i> Смотреть запись на Twitch
-                                    </a>
+                            ${buttonsHTML ? `
+                                <div class="watch-buttons">
+                                    ${buttonsHTML}
                                 </div>
                             ` : ''}
                         </div>
