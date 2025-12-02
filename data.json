@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "title": "Интерстеллар",
+    "category": "films",
+    "banner": "https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/9de4a4b8-6a0c-4232-8c5f-3bc995e8c996/600x900",
+    "status": "watched",
+    "watchDate": "15.01.2024",
+    "streamLink": "https://twitch.tv/videos/123456789",
+    "description": "Фантастический эпос о путешествии через червоточину"
+  },
+  {
+    "id": 2,
+    "title": "Бойцовский клуб",
+    "category": "films",
+    "banner": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4cd8-9c74-2c2c21b65499/600x900",
+    "status": "watched",
+    "watchDate": "10.01.2024",
+    "streamLink": "https://twitch.tv/videos/987654321",
+    "description": "Культовый фильм о подпольном бойцовском клубе"
+  },
+  {
+    "id": 3,
+    "title": "Атака титанов",
+    "category": "anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-sH5z5RfMuyMr.png",
+    "status": "watching",
+    "watchDate": "В процессе",
+    "streamLink": "https://twitch.tv/videos/555555555",
+    "episodesWatched": 42,
+    "description": "Эпическая сага о выживании человечества"
+  },
+  {
+    "id": 4,
+    "title": "Ковбой Бибоп",
+    "category": "anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1-4x3g5p0KQzTv.png",
+    "status": "watched",
+    "watchDate": "05.01.2024",
+    "streamLink": "https://twitch.tv/videos/444444444",
+    "episodesWatched": 26,
+    "description": "Космические приключения охотников за головами"
+  },
+  {
+    "id": 5,
+    "title": "Твоё имя",
+    "category": "films-anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx32281-KE4mKtVQdK4q.jpg",
+    "status": "watched",
+    "watchDate": "20.01.2024",
+    "streamLink": "https://twitch.tv/videos/333333333",
+    "description": "Романтическая история о телепортации душ"
+  },
+  {
+    "id": 6,
+    "title": "Игра престолов",
+    "category": "series",
+    "banner": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/dfa4c9ac-8d41-4263-8ef9-572c8f5d6e30/600x900",
+    "status": "dropped",
+    "watchDate": "До 5 сезона",
+    "streamLink": "https://twitch.tv/videos/222222222",
+    "episodesWatched": 50,
+    "description": "Эпическая фэнтези-сага о борьбе за Железный трон"
+  },
+  {
+    "id": 7,
+    "title": "Космические рейнджеры",
+    "category": "other",
+    "banner": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/7a6c514c-4f6b-4ae6-8b17-2b6e6f7b1c8d/600x900",
+    "status": "onhold",
+    "watchDate": "В долгу",
+    "streamLink": "https://twitch.tv/videos/111111111",
+    "description": "Культовая космическая стратегия"
+  },
+  {
+    "id": 8,
+    "title": "Джокер",
+    "category": "films",
+    "banner": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/bf93b465-1189-4155-9dd1-cb9fb5cb1bb4/600x900",
+    "status": "watched",
+    "watchDate": "25.01.2024",
+    "streamLink": "https://twitch.tv/videos/666666666",
+    "description": "История превращения Артура Флека в Джокера"
+  },
+  {
+    "id": 9,
+    "title": "Ванпанчмен",
+    "category": "anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20507-Cu2tvcqHim6t.png",
+    "status": "watched",
+    "watchDate": "18.01.2024",
+    "streamLink": "https://twitch.tv/videos/777777777",
+    "episodesWatched": 24,
+    "description": "Сатира на супергеройский жанр"
+  },
+  {
+    "id": 10,
+    "title": "Наруто",
+    "category": "anime",
+    "banner": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20-6Gmc8XbPwCjb.png",
+    "status": "watching",
+    "watchDate": "В процессе",
+    "streamLink": "https://twitch.tv/videos/888888888",
+    "episodesWatched": 120,
+    "description": "История ниндзя, мечтающего стать хокаге"
+  }
+]
