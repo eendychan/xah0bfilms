@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Интерстеллар",
+    "category": "films",
+    "banner": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX600_.jpg",
+    "status": "watched",
+    "watchDate": "15.01.2024",
+    "description": "Фантастический эпос о путешествии через червоточину",
+    "buttons": [
+      {
+        "text": "Смотреть запись",
+        "url": "https://twitch.tv/videos/123456789",
+        "color": "#9146ff",
+        "size": "large"
+      },
+      {
+        "text": "Telegram",
+        "url": "https://t.me/xah0b",
+        "color": "#0088cc",
+        "size": "small"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Бойцовский клуб",
+    "category": "films",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX600_.jpg",
+    "status": "watched",
+    "watchDate": "10.01.2024",
+    "description": "Культовый фильм о подпольном бойцовском клубе",
+    "buttons": [
+      {
+        "text": "Twitch",
+        "url": "https://twitch.tv/videos/987654321",
+        "color": "#9146ff",
+        "size": "small"
+      },
+      {
+        "text": "YouTube",
+        "url": "https://youtube.com/watch?v=abc123",
+        "color": "#ff0000",
+        "size": "small"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Атака титанов",
+    "category": "anime",
+    "banner": "https://m.media-amazon.com/images/M/MV5BODRlNDUxZmItYWY2NC00ZDBhLWIxMGEtZjU1ZDE4ZDIyOTM0XkEyXkFqcGdeQXVyNjc2NzA2MTM@._V1_FMjpg_UX600_.jpg",
+    "status": "watching",
+    "watchDate": "В процессе",
+    "episodesWatched": 42,
+    "description": "Эпическая сага о выживании человечества",
+    "buttons": [
+      {
+        "text": "Часть 1-10",
+        "url": "https://twitch.tv/videos/555555555",
+        "color": "#9146ff",
+        "size": "large"
+      },
+      {
+        "text": "Обсуждение",
+        "url": "https://t.me/xah0b_discuss",
+        "color": "#0088cc",
+        "size": "small"
+      }
+    ]
+  }
+]
