@@ -1,0 +1,35 @@
+name: Update Content
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Check data.json
+      run: |
+        if [ -f "data.json" ]; then
+          echo "data.json exists"
+          # Проверяем валидность JSON
+          python3 -m json.tool data.json > /dev/null && echo "JSON is valid"
+        else
+          echo "data.json not found"
+          exit 1
+        fi
+        
+    - name: Test commit
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        date > last-update.txt
+        git add last-update.txt
+        git commit -m "Test update" || echo "No changes"
+        git push || echo "Push failed or not needed"
