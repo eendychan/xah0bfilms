@@ -6,8 +6,21 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX600_.jpg",
     "status": "watched",
     "watchDate": "15.01.2024",
-    "streamLink": "https://twitch.tv/videos/123456789",
-    "description": "Фантастический эпос о путешествии через червоточину"
+    "description": "Фантастический эпос о путешествии через червоточину",
+    "buttons": [
+      {
+        "text": "📺 Смотреть запись",
+        "url": "https://twitch.tv/videos/123456789",
+        "color": "#9146ff",
+        "size": "large"
+      },
+      {
+        "text": "🎬 Обсуждение в VK",
+        "url": "https://vk.com/xah0b_club",
+        "color": "#4c75a3",
+        "size": "small"
+      }
+    ]
   },
   {
     "id": 2,
@@ -16,8 +29,23 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BNDIzNDU0YzEtYzE5Ni00ZjlkLTk5ZjgtNjM3NWE4YzA3Nzk3XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_FMjpg_UX600_.jpg",
     "status": "watched",
     "watchDate": "10.01.2024",
-    "streamLink": "https://twitch.tv/videos/987654321",
-    "description": "Культовый фильм о подпольном бойцовском клубе"
+    "description": "Культовый фильм о подпольном бойцовском клубе",
+    "buttons": [
+      {
+        "text": "Twitch VOD",
+        "url": "https://twitch.tv/videos/987654321",
+        "color": "#9146ff",
+        "icon": "fab fa-twitch",
+        "size": "small"
+      },
+      {
+        "text": "YouTube Нарезка",
+        "url": "https://youtube.com/watch?v=abc123",
+        "color": "#ff0000",
+        "icon": "fab fa-youtube",
+        "size": "small"
+      }
+    ]
   },
   {
     "id": 3,
@@ -26,9 +54,28 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BODRlNDUxZmItYWY2NC00ZDBhLWIxMGEtZjU1ZDE4ZDIyOTM0XkEyXkFqcGdeQXVyNjc2NzA2MTM@._V1_FMjpg_UX600_.jpg",
     "status": "watching",
     "watchDate": "В процессе",
-    "streamLink": "https://twitch.tv/videos/555555555",
-    "episodesWatched": 43,
-    "description": "Эпическая сага о выживании человечества"
+    "episodesWatched": 42,
+    "description": "Эпическая сага о выживании человечества",
+    "buttons": [
+      {
+        "text": "🎥 Часть 1-10",
+        "url": "https://twitch.tv/videos/555555555",
+        "color": "#9146ff",
+        "size": "large"
+      },
+      {
+        "text": "🎥 Часть 11-20",
+        "url": "https://twitch.tv/videos/555555556",
+        "color": "#6c5ce7",
+        "size": "large"
+      },
+      {
+        "text": "💬 Обсудить в Telegram",
+        "url": "https://t.me/xah0b_discuss",
+        "color": "#0088cc",
+        "size": "small"
+      }
+    ]
   },
   {
     "id": 4,
@@ -37,9 +84,17 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BOTdlYjNhNjktMjAzNC00YjRhLWFiM2UtM2YwMjM0M2Q1NzUwXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX600_.jpg",
     "status": "watched",
     "watchDate": "05.01.2024",
-    "streamLink": "https://twitch.tv/videos/444444444",
     "episodesWatched": 26,
-    "description": "Космические приключения охотников за головами"
+    "description": "Космические приключения охотников за головами",
+    "buttons": [
+      {
+        "text": "Смотреть на Twitch",
+        "url": "https://twitch.tv/videos/444444444",
+        "color": "#9146ff",
+        "icon": "fab fa-twitch",
+        "size": "large"
+      }
+    ]
   },
   {
     "id": 5,
@@ -48,8 +103,8 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BODRmZDVmNzUtZDA4ZC00NjhkLWI2M2UtN2M0ZDIzNDcxYThjL2ltYWdlXkEyXkFqcGdeQXVyNTk0MzMzODA@._V1_FMjpg_UX600_.jpg",
     "status": "watched",
     "watchDate": "20.01.2024",
-    "streamLink": "https://twitch.tv/videos/333333333",
-    "description": "Романтическая история о телепортации душ"
+    "description": "Романтическая история о телепортации душ",
+    "streamLink": "https://twitch.tv/videos/333333333"
   },
   {
     "id": 6,
@@ -58,9 +113,29 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGIzXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX600_.jpg",
     "status": "dropped",
     "watchDate": "До 5 сезона",
-    "streamLink": "https://twitch.tv/videos/222222222",
     "episodesWatched": 50,
-    "description": "Эпическая фэнтези-сага о борьбе за Железный трон"
+    "description": "Эпическая фэнтези-сага о борьбе за Железный трон",
+    "buttons": [
+      {
+        "text": "Сезон 1-3",
+        "url": "https://twitch.tv/videos/222222221",
+        "color": "#4caf50",
+        "size": "small"
+      },
+      {
+        "text": "Сезон 4-5",
+        "url": "https://twitch.tv/videos/222222222",
+        "color": "#ff9800",
+        "size": "small"
+      },
+      {
+        "text": "Обсуждение финала",
+        "url": "https://t.me/xah0b_got",
+        "color": "#0088cc",
+        "icon": "fab fa-telegram",
+        "size": "small"
+      }
+    ]
   },
   {
     "id": 7,
@@ -69,8 +144,21 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX600_.jpg",
     "status": "watched",
     "watchDate": "25.01.2024",
-    "streamLink": "https://twitch.tv/videos/666666666",
-    "description": "Фильм о проникновении в сны"
+    "description": "Фильм о проникновении в сны",
+    "buttons": [
+      {
+        "text": "🎬 Полный разбор",
+        "url": "https://youtube.com/watch?v=inception_analysis",
+        "color": "#ff0000",
+        "size": "large"
+      },
+      {
+        "text": "Twitch VOD",
+        "url": "https://twitch.tv/videos/666666666",
+        "color": "#9146ff",
+        "size": "small"
+      }
+    ]
   },
   {
     "id": 8,
@@ -79,9 +167,34 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX600_.jpg",
     "status": "watching",
     "watchDate": "В процессе",
-    "streamLink": "https://twitch.tv/videos/777777777",
-    "episodesWatched": 121,
-    "description": "История ниндзя, мечтающего стать хокаге"
+    "episodesWatched": 120,
+    "description": "История ниндзя, мечтающего стать хокаге",
+    "buttons": [
+      {
+        "text": "📺 Арка Зари",
+        "url": "https://twitch.tv/videos/777777771",
+        "color": "#ff9800",
+        "size": "small"
+      },
+      {
+        "text": "📺 Арка Тсунаде",
+        "url": "https://twitch.tv/videos/777777772",
+        "color": "#ff5722",
+        "size": "small"
+      },
+      {
+        "text": "📺 Арка Итачи",
+        "url": "https://twitch.tv/videos/777777773",
+        "color": "#f44336",
+        "size": "small"
+      },
+      {
+        "text": "💬 Обсуждение",
+        "url": "https://t.me/xah0b_naruto",
+        "color": "#0088cc",
+        "size": "small"
+      }
+    ]
   },
   {
     "id": 9,
@@ -90,8 +203,16 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX600_.jpg",
     "status": "watched",
     "watchDate": "18.01.2024",
-    "streamLink": "https://twitch.tv/videos/888888888",
-    "description": "История превращения Артура Флека в Джокера"
+    "description": "История превращения Артура Флека в Джокера",
+    "buttons": [
+      {
+        "text": "Смотреть запись",
+        "url": "https://twitch.tv/videos/888888888",
+        "color": "#9146ff",
+        "icon": "fab fa-twitch",
+        "size": "large"
+      }
+    ]
   },
   {
     "id": 10,
@@ -100,7 +221,20 @@
     "banner": "https://m.media-amazon.com/images/M/MV5BMjA3NTEwOTMxMV5BMl5BanBnXkFtZTgwMjMyODgxMzE@._V1_FMjpg_UX600_.jpg",
     "status": "onhold",
     "watchDate": "В долгу",
-    "streamLink": "https://twitch.tv/videos/999999999",
-    "description": "Научно-фантастический триллер о времени как валюте"
+    "description": "Научно-фантастический триллер о времени как валюте",
+    "buttons": [
+      {
+        "text": "📅 Запланировано",
+        "url": "https://twitch.tv/xah0b/schedule",
+        "color": "#9c27b0",
+        "size": "large"
+      },
+      {
+        "text": "🗓️ Напоминание",
+        "url": "https://t.me/xah0b_reminder_bot",
+        "color": "#0088cc",
+        "size": "small"
+      }
+    ]
   }
 ]
